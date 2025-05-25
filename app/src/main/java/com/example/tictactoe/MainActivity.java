@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
                             {0,3,6},{1,4,7},{2,5,8},
                             {0,4,8},{2,4,6}};
 
+    int XWon=0;
+    int YWon=0;
+
     public void playerTap(View view){
         ImageView img = (ImageView) view;
         int tappedImage = Integer.parseInt(img.getTag().toString());
@@ -63,15 +66,21 @@ public class MainActivity extends AppCompatActivity {
                 String winnerStr;
                 if(gameState[winPosition[0]] == 0){
                     winnerStr = "X has won";
+                    XWon++;
                     gameactive = false;
                 }else {
                     winnerStr = "O has won";
+                    YWon++;
                     gameactive = false;
                 }
                 //update status bar for winner
                 TextView status = findViewById(R.id.status);
                 status.setText(winnerStr);
-
+                //Update Score Board
+                TextView XWins = findViewById(R.id.xWins);
+                XWins.setText(String.valueOf(XWon));
+                TextView YWins = findViewById(R.id.yWins);
+                YWins.setText(String.valueOf(YWon));
             }
         }
 
